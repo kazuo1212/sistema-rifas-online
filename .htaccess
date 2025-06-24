@@ -1,0 +1,32 @@
+RewriteEngine On
+
+# Redirecionar para pasta extrair se não estiver nela
+RewriteCond %{REQUEST_URI} !^/extrair/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ extrair/$1 [L]
+
+# Dentro da pasta extrair
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Campanha individual
+RewriteRule ^campanha/([^/]+)/?$ index.php?p=pages/products/view_product&id=$1 [L,QSA]
+
+# Páginas principais
+RewriteRule ^cadastrar/?$ index.php?p=pages/register [L,QSA]
+RewriteRule ^campanhas/?$ index.php?p=pages/campaigns [L,QSA]
+RewriteRule ^concluidas/?$ index.php?p=pages/finished [L,QSA]
+RewriteRule ^ganhadores/?$ index.php?p=pages/winners [L,QSA]
+RewriteRule ^meus-numeros/?$ index.php?p=pages/my-numbers [L,QSA]
+RewriteRule ^contato/?$ index.php?p=pages/contact [L,QSA]
+RewriteRule ^termos-de-uso/?$ index.php?p=pages/terms [L,QSA]
+
+# Área do usuário
+RewriteRule ^user/(.*)$ index.php?p=pages/user/$1 [L,QSA]
+
+# Compra
+RewriteRule ^compra/([^/]+)/?$ index.php?p=pages/checkout&id=$1 [L,QSA]
+
+# API endpoints
+RewriteRule ^api/(.*)$ api/$1 [L,QSA] 

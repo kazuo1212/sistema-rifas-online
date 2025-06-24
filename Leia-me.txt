@@ -1,0 +1,10 @@
+﻿1. Suba o arquivo subir e extrair.zip para o local desejado e após isso extraia ele na hospedagem
+2. Crie o banco de dados e usuario do banco e após isso adicionar as credenciais no arquivo initialize.php
+3. Suba o arquivo banco.sql no phpmyadmin
+4. Altere o php para 8.2
+Pronto instalado...
+
+Login e Senha Padrão
+seulink.com/admin
+Login: admin
+Senha: albinodevs
