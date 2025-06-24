@@ -8,10 +8,5 @@ restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 3
 
 [environments.production.variables]
-DB_HOST = { $ref = "MySQL.MYSQL_HOST" }
-DB_USER = { $ref = "MySQL.MYSQL_USER" }
-DB_PASSWORD = { $ref = "MySQL.MYSQL_PASSWORD" }
-DB_NAME = { $ref = "MySQL.MYSQL_DATABASE" }
-DB_PORT = { $ref = "MySQL.MYSQL_PORT" }
 SITE_NAME = "Sistema de Rifas Online"
 RAILWAY_ENVIRONMENT = "production" 
