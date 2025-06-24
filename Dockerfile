@@ -1,31 +1,29 @@
 FROM php:8.2-apache
 
-# Instalar extensões PHP necessárias
+# Instalar extensões PHP essenciais
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# Instalar outras dependências
+# Instalar dependências básicas
 RUN apt-get update && apt-get install -y \
-    libzip-dev \
-    zip \
-    unzip \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd zip
-
-# Copiar arquivos do projeto
-COPY extrair/ /var/www/html/
-
-# Definir permissões
-RUN chown -R www-data:www-data /var/www/html/ \
-    && chmod -R 755 /var/www/html/
+    && docker-php-ext-install gd \
+    && rm -rf /var/lib/apt/lists/*
 
 # Habilitar mod_rewrite
 RUN a2enmod rewrite
 
-# Configurar Apache
+# Copiar arquivos do projeto
+COPY extrair/ /var/www/html/
+
+# Copiar configuração do Apache
 COPY apache-config.conf /etc/apache2/sites-available/000-default.conf
+
+# Definir permissões
+RUN chown -R www-data:www-data /var/www/html/ \
+    && chmod -R 755 /var/www/html/
 
 # Expor porta
 EXPOSE 80
